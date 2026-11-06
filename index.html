@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body>
+<title>Montse Martí Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<style>
+/* One white page with black Inter type; every screen follows the Figma wireframes:
+   centred name, two staggered columns of covers, a fixed text block beside scrolling images. */
+:root{
+  --bg:#ffffff;
+  --ink:#000000;
+  --mute:#6b6b6b;
+  --plate:#d9d9d9;
+  --lav:#c3cbf3;
+  --sans:"Inter","Helvetica Neue",Arial,sans-serif;
+  --gut:clamp(16px,3.26vw,64px);
+  --padl:max(var(--gut),env(safe-area-inset-left,0px));
+  --padr:max(var(--gut),env(safe-area-inset-right,0px));
+  --fs:clamp(15px,1.39vw,26px);
+  --fs-name:clamp(19px,2.08vw,36px);
+  --fs-title:clamp(22px,2.08vw,36px);
+  --hh:64px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--bg);scroll-behavior:auto}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 var(--fs)/1.2 var(--sans);-webkit-font-smoothing:antialiased;min-height:100vh}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+body.home::before{display:none}
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:.2em}
+a:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+img{display:block}
+
+/* header: name stays on top of every page */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg)}
+.top-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:start;padding-block:clamp(14px,1.9vw,34px) clamp(12px,1.5vw,28px);padding-left:var(--padl);padding-right:var(--padr)}
+.top .name{font-size:var(--fs-name);font-weight:600;text-transform:uppercase;letter-spacing:-.02em;text-align:center;line-height:1.15}
+.top .name:hover{text-decoration:none}
+.top .l{justify-self:start;padding-top:.12em}
+.top .r{justify-self:end;padding-top:.12em}
+
+.page{padding-top:clamp(18px,3.5vw,64px);padding-bottom:clamp(48px,6vw,110px);padding-left:var(--padl);padding-right:var(--padr)}
+
+/* first page */
+.splash{min-height:100vh;display:grid;place-items:center;text-align:center;color:#fff;background:#ee7f66 url(img/gradient.jpg) center/cover no-repeat;padding:24px var(--padr) 24px var(--padl)}
+.splash .in{transform:translateY(-2vh)}
+.splash h1{margin:0;font-size:clamp(34px,8.6vw,155px);font-weight:500;letter-spacing:-.025em;line-height:1;text-transform:uppercase}
+.splash .visit{display:inline-block;margin-top:clamp(8px,1vw,18px);font-size:clamp(16px,1.8vw,32px);font-weight:600}
+
+/* portfolio */
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:5.5vw;align-items:start}
+.col{display:flex;flex-direction:column;gap:6.2vw}
+.tile{display:block}
+.tile .img{overflow:hidden;background:var(--plate)}
+.tile .img img{width:100%;height:100%;object-fit:cover}
+.tile .cap{margin:.95vw 0 0;text-align:right;padding-right:2.8%}
+.tile:hover{text-decoration:none}
+.tile:hover .cap{text-decoration:underline;text-underline-offset:.2em}
+.ph{height:100%;display:grid;place-items:center;color:var(--mute);text-align:center;padding:16px}
+
+/* project page */
+.proj{display:grid;grid-template-columns:minmax(0,62.5fr) minmax(0,29fr);column-gap:2.6vw;align-items:start}
+.imgs{display:flex;flex-direction:column;gap:1.4vw;min-width:0}
+.imgs img,.imgs video{width:100%;height:auto;display:block}
+.g3,.g2{display:grid;gap:1.4vw}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.txt{position:sticky;top:calc(var(--hh) + 1.2vw);min-width:0}
+.txt h1{margin:0 0 1.2vw;font-size:var(--fs-title);font-weight:500;line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
+.txt p{margin:0 0 1em;max-width:34em}
+.txt .credit{color:var(--mute);font-weight:500}
+.sitebox{background:var(--plate);aspect-ratio:900/760;display:flex;flex-direction:column;justify-content:center;gap:1.2vw;padding:0 4vw}
+.sitebox a{font-size:var(--fs-title);font-weight:500;text-decoration:underline;text-underline-offset:.2em;width:fit-content}
+.sitebox p{margin:0;color:var(--mute)}
+
+/* project page extras */
+.lab{margin:1.4vw 0 -.4vw;font-weight:500}
+.lab:first-child{margin-top:0}
+.links{display:flex;flex-direction:column;gap:.45em;margin-top:.2em}
+.links a{width:fit-content;text-decoration:underline;text-underline-offset:.2em}
+
+/* about */
+.about{display:grid;grid-template-columns:calc(51.7vw - var(--padl)) minmax(0,1fr);column-gap:12px;align-items:stretch}
+.about-l{position:relative;margin-left:calc(-1 * var(--padl));padding-left:var(--padl);min-width:0}
+.about-l::before{content:"";position:absolute;inset:0;background:url(img/flowers.webp) top left/cover no-repeat;opacity:.25;z-index:0}
+.about-l .copy{position:relative;z-index:1;max-width:31vw}
+.about h1{margin:0 0 1.4vw;font-size:var(--fs-title);font-weight:600;letter-spacing:-.01em;line-height:1.15}
+.about p{margin:0 0 1.2em}
+.about-r img{width:100%;height:auto}
+.note{max-width:30em}
+
+@media (max-width:720px){
+  :root{--fs:16px;--fs-name:21px;--fs-title:24px}
+  .top-in{grid-template-columns:1fr 1fr;grid-template-areas:"name name" "l r";row-gap:10px}
+  .top .name{grid-area:name}
+  .top .l{grid-area:l}
+  .top .r{grid-area:r}
+  .page{padding-top:20px}
+  .cols{display:flex;flex-direction:column;gap:56px}
+  .col{display:contents}
+  .tile{order:var(--o,0)}
+  .tile .cap{margin-top:10px}
+  .proj{grid-template-columns:minmax(0,1fr);row-gap:24px}
+  .txt{position:static;order:-1}
+  .txt h1{margin-bottom:12px}
+  .imgs,.g3,.g2{gap:12px}
+  .lab{margin-top:12px}
+  .sitebox{aspect-ratio:auto;padding:36px 20px;gap:16px}
+  .about{grid-template-columns:minmax(0,1fr);row-gap:24px}
+  .about-l{min-height:120vw;padding-right:var(--padr)}
+  .about-l::before{background-size:cover;background-position:top left}
+  .about-l .copy{max-width:none}
+  .about h1{margin-bottom:14px}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+<div id="app"></div>
+<script>
+var RESUME = "resume.pdf";
+
+var DIM = {bm:[1900,1334],bm8:[926,638],at:[1800,1013],bs:[1080,1350],cs0:[1800,1200],cs:[1200,1200],am:[1920,1080],bj:[1760,990]};
+function dimOf(f){
+  if(f==="bm-8.jpg")return DIM.bm8;
+  if(f==="cs-0.jpg")return DIM.cs0;
+  var k=f.split("-")[0];return DIM[k]||[1200,800];
+}
+
+var PROJECTS=[
+ {id:"back-matter",col:0,o:0,ratio:"649/829",tile:"tile-backmatter.jpg",
+  cap:"– art direction for Back Matter magazine",
+  tileAlt:"Opening page of the Back Matter story “Why does dropping acid leave such a bad taste?”, with hand-drawn lettering over a skate park photo",
+  title:"Art Director for Back Matter Magazine",
+  text:["Back Matter is a magazine produced by graduate students in journalism and publishing at The New School. As Art Director for the Spring 2026 issue, I was responsible for developing its visual identity, designing editorial layouts, sourcing and commissioning artwork, and directing photo shoots.", "For this issue, we chose Rebirth as our theme, which I wanted to reflect not only in the stories and artwork we featured, but also in the design itself. I experimented with combining digital and analogue elements, incorporating hand-drawn illustrations, collages, and different textures throughout the magazine. I liked the idea of bringing something handmade into a digital space, allowing the two to interact and giving the pages a more personal, imperfect feel.", "For the article “Why Does Dropping Acid Leave Such a Bad Taste?”, I directed the photo shoot, designed the layout, and created the graphics by drawing directly over the photographs. The final spread features a painting by an artist I discovered and reached out to for the issue. I was drawn to the way it explores transformation through the human body, offering a more unsettling interpretation of our theme of rebirth."],
+  blocks:[
+   {t:"one",imgs:[["bm-1.jpg","Opening spread with the hand-lettered headline over a skate park photo"],["bm-2.jpg","Second spread with story text beside a skate park photo covered in drawn flowers"],["bm-3.jpg","Spread with a photo of a person lying on a couch with a laptop, and story text"],["bm-4.jpg","Spread with a photo labelled Jackass in graffiti lettering beside a portrait on a couch"],["bm-5.jpg","Spread with story text beside a basketball hoop photo with drawn butterflies"],["bm-6.jpg","Full-page photo of a traffic cone and a person on a skateboard, with drawn stars"],["bm-7.jpg","Closing spread with a black-and-white portrait covered in stars, and the end of the story"],["bm-8.jpg","Spread featuring a painting by an artist, beside a page of red text"]]}
+  ]},
+ {id:"atelier",col:1,o:1,ratio:"649/527",tile:"tile-atelier.jpg",
+  cap:"– brand identity project",
+  tileAlt:"Kraft paper packaging box with a dark Atelier label",
+  title:"Atelier Brand Identity",
+  text:["Atelier is a fictional e-commerce platform that I developed with Jan Tancinco and Katherine Pitré for a design class. We wanted to create a space that connects independent designers with people who value craftsmanship, individuality, and slow fashion, approaching clothing and accessories as works of art rather than simply products to be sold.", "The idea was to bring together the experience of shopping and visiting a gallery, giving as much importance to the stories and creative processes behind each piece as to the pieces themselves. With this in mind, we developed a visual identity that could feel both contemporary and timeless, extending it across the logo, typography, color palette, advertising, website mockups, image library, and packaging."],
+  blocks:[
+   {t:"one",imgs:[["at-1.jpg","Atelier title slide with the logo and the words craftsmanship, authenticity and fashion"],["at-2.jpg","Mission statement slide"],["at-3.jpg","Atelier ads with photography and the logo"],["at-4.jpg","More Atelier ads, including jewelry and street photography"],["at-5.jpg","Website mockup for the Atelier marketplace"],["at-6.jpg","Design guide with logo versions, color palette and typefaces"],["at-7.jpg","Image library sample"],["at-8.jpg","Packaging: a kraft box and three colored cards"]]}
+  ]},
+ {id:"bookstagram",col:0,o:2,ratio:"4/5",tile:"tile-bookstagram.jpg",
+  cap:"– upcoming bookstagram",
+  tileAlt:"Instagram post for the book Nymph",
+  title:"Upcoming Bookstagram",
+  text:["Books by Montse (@books.by.montse) is a personal project I’ve been working on, bringing together two of my biggest interests: literature and design. I wanted to create a space where I could share what I’m reading and my thoughts on books, while also experimenting with editorial design in a more informal, digital format.", "The graphics combine photography, typography, and one line reviews, with each book offering an opportunity to play with different visual elements while maintaining a consistent identity across the account. The first designs feature Lost Lambs, Nymph, and Sirens & Muses."],
+  blocks:[
+   {t:"g3",imgs:[["bs-1.jpg","Lost Lambs cover post"],["bs-2.jpg","Lost Lambs first sentence post"],["bs-3.jpg","Lost Lambs rating post"],["bs-4.jpg","Nymph cover post"],["bs-5.jpg","Nymph first sentence post"],["bs-6.jpg","Nymph rating post"],["bs-7.jpg","Sirens & Muses cover post"],["bs-8.jpg","Sirens & Muses first sentence post"],["bs-9.jpg","Sirens & Muses rating post"]]}
+  ]},
+ {id:"postcard",col:1,o:3,ratio:"1300/841",tile:"tile-postcard.jpg",
+  cap:"– web design for a digital postcard",
+  tileAlt:"Collage of photos from the Teresa Helbig Wet Ballet showroom: hanging garments and a pale blue leather ottoman draped with fabric",
+  title:"Web Design for a Digital Postcard",
+  text:["As part of my Design and the Future of Publishing course at The New School, I created a digital postcard using HTML, inspired by a visit to Teresa Helbig’s New York showroom for her Spring/Summer 2025 collection, Wet Ballet. I was particularly drawn to the fluidity of the garments and the dreamlike atmosphere of the space, which I wanted to translate into the design. I used Lightroom and Photoshop to edit the photographs I’d taken, playing with movement, composition, and texture to capture the feeling of walking through the showroom.", "The postcard works almost like a triptych, with three different versions: text, photography, and multimedia. The text follows my personal experience of discovering the collection, while the photographs focus on the individual pieces, their textures, and the overall atmosphere. The two come together in the multimedia version, where images, video, and sound create a more immersive interpretation of the experience.","Open the live versions in a new tab:"],
+  links:[["Multimedia version","https://nikasimovich.github.io/postcards24/montse/multi.html"],["Photo version","https://nikasimovich.github.io/postcards24/montse/img.html"],["Text version","https://nikasimovich.github.io/postcards24/montse/index.html"]],
+  blocks:[
+   {t:"video",src:"postcard.mp4",poster:"postcard-poster.jpg",alt:"Screen recording of the multimedia version of the Wet Ballet digital postcard, scrolling through photos, video and text"}
+  ]},
+ {id:"amelia",col:1,o:4,ratio:"649/600",tile:"tile-amelia.jpg",
+  cap:"– mock-magazine social media",
+  tileAlt:"Phone showing the Amelia Instagram profile",
+  title:"Social Media for a Mock Magazine",
+  text:["Amelia is a magazine concept developed during the Columbia Publishing Course, aimed at young women interested in solo travel. With the tagline “Always solo, never alone,” we wanted to create a publication that would encourage women to explore the world independently, while also building a sense of community around the experience.", "As Social Media Editor, I worked on developing Amelia’s digital identity, from researching our target audience and defining the brand’s tone of voice to planning its content strategy and posting style. I wanted the Instagram account to feel like an extension of the magazine, balancing practical travel advice with more personal, relatable content. I also designed the profile, grid, feed posts, and stories, creating a cohesive visual identity that reflected the publication’s approach to solo travel."],
+  links:[["@amelia__solo","https://www.instagram.com/amelia__solo?srtk=MWU5a3NxaHozNjFrZw%3D%3D&utm_source=qr"]],
+  blocks:[
+   {t:"one",imgs:[["am-1.jpg","Phone mockups of the Amelia profile, an airport must-haves story and a post with the Amelia stamp"],["am-2.jpg","Phone mockups of three Amelia feed posts about solo travel"]]}
+  ]},
+ {id:"co-star",col:1,o:5,ratio:"649/498",tile:"tile-costar.jpg",
+  cap:"– if Co-Star was a book",
+  tileAlt:"Black hardcover book titled Blame the Stars: The Co-Star Guide to Astrology",
+  title:"If Co-Star Was a Book",
+  text:["As part of the Columbia Publishing Course, I worked on a hypothetical book proposal inspired by Co–Star, the astrology app known for its distinctive visual identity and unconventional approach to horoscopes. Blame the Stars: The Co–Star Guide to Astrology imagines how the app’s personality and aesthetic could translate into a book, bringing its particular mix of astrology, humor, and self-reflection to a new format.", "I designed the book cover and a series of social media graphics, drawing inspiration from Co–Star’s minimalist, black-and-white aesthetic while experimenting with typography and composition. For the social campaign, I created a series of do’s and don’ts for the four astrological elements (air, earth, fire, and water) playing with the app’s dry, occasionally blunt tone to create content that felt consistent with the brand while promoting the book concept."],
+  blocks:[
+   {t:"one",imgs:[["cs-0.jpg","Book mockup of Blame the Stars: The Co-Star Guide to Astrology"]]},
+   {t:"g2",imgs:[["cs-1.jpg","Air signs: do and don’t list"],["cs-2.jpg","Earth signs: do and don’t list"],["cs-3.jpg","Fire signs: do and don’t list"],["cs-4.jpg","Water signs: do and don’t list"]]}
+  ]},
+ {id:"bell-jar",col:0,o:6,ratio:"649/407",tile:"tile-belljar.jpg",
+  cap:"– book cover redesign",
+  tileAlt:"Redesigned cover spread for The Bell Jar with a fig on the front",
+  title:"The Bell Jar Cover Redesign",
+  text:["Sylvia Plath has long been one of my favorite writers, so when I was given the opportunity to redesign a book cover, The Bell Jar was an obvious choice. Despite how much I love the novel, I’ve never liked any of its existing covers. I wanted to give it a more contemporary identity that felt closer to the writing itself.", "I looked at the work of cover designer Alex Merto for inspiration. For my redesign, I centered the cover around figs, drawing on the novel’s famous fig-tree metaphor. I also used Sylvia Plath’s own handwriting for the title and author name, bringing something personal to the design. I liked the idea of taking something so central to the book and making it the focus of the design, playing with photography, typography, and texture to create something both visually striking and connected to the story."],
+  blocks:[
+   {t:"one",imgs:[["bj-1.jpg","Title slide: Book Cover Redesign, The Bell Jar"],["bj-2.jpg","Past covers of The Bell Jar"],["bj-3.jpg","Inspiration: contemporary book covers"],["bj-4.jpg","Final design: back cover, front cover with a fig, and spine"]]}
+  ]}
+];
+
+var app=document.getElementById("app");
+
+function img(f,alt,eager){
+  var d=dimOf(f);
+  return '<img src="img/'+f+'" alt="'+alt+'" width="'+d[0]+'" height="'+d[1]+'"'+(eager?'':' loading="lazy"')+'>';
+}
+function header(left,right){
+  var l=left==="back"?'<a class="l" href="#portfolio">back to portfolio</a>':'<a class="l" href="#about">about</a>';
+  var r=right==="about"?'<a class="r" href="#about">about</a>':'<a class="r" href="'+RESUME+'" target="_blank" rel="noopener">resume</a>';
+  return '<header class="top"><div class="top-in">'+l+'<a class="name" href="#home">Montse Martí</a>'+r+'</div></header>';
+}
+function tile(p){
+  var inner=p.tile?img(p.tile,p.tileAlt,true).replace(' width="'+dimOf(p.tile)[0]+'" height="'+dimOf(p.tile)[1]+'"',''):'<div class="ph">Photos coming soon</div>';
+  return '<a class="tile" href="#'+p.id+'" style="--o:'+p.o+'"><div class="img" style="aspect-ratio:'+p.ratio+'">'+inner+'</div><p class="cap">'+p.cap+'</p></a>';
+}
+function splash(){
+  return '<main class="splash"><div class="in"><h1>Montse Martí</h1><a class="visit" href="#portfolio">visit portfolio</a></div></main>';
+}
+function portfolio(){
+  var cols=[[],[]];
+  PROJECTS.forEach(function(p){cols[p.col].push(tile(p))});
+  return header("about","resume")+'<main class="page"><div class="cols"><div class="col">'+cols[0].join("")+'</div><div class="col">'+cols[1].join("")+'</div></div></main>';
+}
+function project(p){
+  var n=0,imgs="";
+  p.blocks.forEach(function(b){
+    if(b.label)imgs+='<p class="lab">'+b.label+'</p>';
+    if(b.t==="video"){imgs+='<video src="img/'+b.src+'" poster="img/'+b.poster+'" aria-label="'+b.alt+'" controls autoplay muted loop playsinline preload="metadata"></video>';return}
+    var h=b.imgs.map(function(x){return img(x[0],x[1],n++<2)}).join("");
+    imgs+=b.t==="one"?h:'<div class="'+b.t+'">'+h+'</div>';
+  });
+  var text=p.text.map(function(t){return "<p>"+t+"</p>"}).join("");
+  var links=p.links?'<div class="links">'+p.links.map(function(l){return '<a href="'+l[1]+'" target="_blank" rel="noopener">'+l[0]+'</a>'}).join("")+'</div>':"";
+  return header("back","about")+'<main class="page"><div class="proj"><div class="imgs">'+imgs+'</div><aside class="txt"><h1>'+p.title+'</h1>'+text+links+'</aside></div></main>';
+}
+function about(){
+  return header("back","resume")+'<main class="page"><div class="about"><div class="about-l"><div class="copy">'+
+    '<h1>Hi, I’m Montse Martí!</h1>'+
+    '<p>I’m a designer and writer based in New York City.</p>'+
+    '<p>Born in Barcelona, I went to university in London and moved to New York for my master’s degree. I recently graduated with an MA in Creative Publishing and Critical Journalism from The New School, following a BA in Comparative Literature from King’s College London.</p>'+
+    '<p>I’ve never been particularly good at choosing between my interests, which is probably why I ended up somewhere between writing and design. I’ve always loved literature, art, and fashion, and I’m particularly interested in the ways they overlap. My work ranges from editorial design and art direction to branding and digital content, and I love experimenting with typography, photography, and collage to bring different ideas to life.</p>'+
+    '<p>Outside of work, you’ll probably find me reading, playing soccer, wandering around in my tabis, or spending far too long in a bookstore.</p>'+
+    '</div></div><div class="about-r"><img src="img/about-me.jpg" alt="Montse in sunglasses and a green trench coat, taking a mirror selfie with a phone" width="1300" height="2010"></div></div></main>';
+}
+var cur=null;
+function setHeaderHeight(){
+  var t=document.querySelector(".top");
+  document.documentElement.style.setProperty("--hh",(t?t.offsetHeight:0)+"px");
+}
+function show(h){
+  var html,home=false;
+  var p=PROJECTS.filter(function(x){return x.id===h})[0];
+  if(h==="portfolio")html=portfolio();
+  else if(h==="about")html=about();
+  else if(p)html=project(p);
+  else{html=splash();home=true;h="home"}
+  cur=h;
+  document.body.classList.toggle("home",home);
+  app.innerHTML=html;
+  setHeaderHeight();
+  window.scrollTo(0,0);
+}
+function go(h){
+  if(h===cur){window.scrollTo(0,0);return}
+  show(h);
+}
+window.addEventListener("hashchange",function(){go((location.hash||"").slice(1))});
+window.addEventListener("resize",setHeaderHeight);
+document.addEventListener("click",function(e){
+  var a=e.target.closest&&e.target.closest('a[href^="#"]');
+  if(!a||e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;
+  var h=a.getAttribute("href").slice(1);
+  e.preventDefault();
+  try{if((location.hash||"").slice(1)!==h)location.hash=h}catch(err){}
+  go(h);
+});
+show((location.hash||"").slice(1));
+</script>
+
+</body></html>
